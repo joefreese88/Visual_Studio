@@ -1,4 +1,16 @@
-﻿Imports System.IO
+﻿
+'''''''''''''''''''''''''''''''''''''''''
+'
+' Author: Joseph Freese
+' Program: Joseph_Freese_P5
+' Description: This program lets the user select from a list of 
+'              appliances and lets them calculate a total daily, monthly,
+'              and yearly cost for the cost per killowat-hour.
+'
+''''''''''''''''''''''''''''''''''''''''''
+
+
+Imports System.IO
 
 Public Class Joseph_Freese_P5
 
@@ -29,10 +41,14 @@ Public Class Joseph_Freese_P5
         applianceKilos(7) = 1.6
     End Sub
 
+    ' allow the user to drag and drop a form that will change the default number of kilowatts for the selected appliance
     Private Sub Joseph_Freese_P5_DragDrop(sender As System.Object, e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop
+
+        ' get the file dropped in the form
         Try
             Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
             Dim iterate As Integer = 0
+
             For Each path In files
 
                 ' Create new StreamReader instance with Using block.
@@ -146,8 +162,10 @@ Public Class Joseph_Freese_P5
             Try
                 'Get the user's input and convert it to a Decimal.
                 Cost = CDbl(KiloCostTxtBox.Text)
+
                 If Cost > 0 Then
 
+                    ' If the user selects the Laundry Washer, allow them to input Water and the cost per gallon
                     If Selected = "Laundry Washer" Then
                         multiply = (Val(HoursPerDayTxtBox.Text) * Val(KiloPowerTxtBox.Text) * Val(KiloCostTxtBox.Text)) + (Val(WaterPerHourTxt.Text) * Val(CostPerGallonTxt.Text))
                         multiplyMonthly = multiply * 30
@@ -157,6 +175,8 @@ Public Class Joseph_Freese_P5
                         Calc3Lbl.Text = multiplyYearly.ToString("C")
                         currentCost = multiply.ToString("C")
                         Exit Sub
+
+                        ' If the user selected a different appliance, just do the normal calculation
                     ElseIf Selected <> "Laundry Washer" Then
                         multiply = (Val(HoursPerDayTxtBox.Text) * Val(KiloPowerTxtBox.Text) * Val(KiloCostTxtBox.Text))
                         multiplyMonthly = multiply * 30
@@ -167,6 +187,8 @@ Public Class Joseph_Freese_P5
                         currentCost = multiply.ToString("C")
                         Exit Sub
                     End If
+
+                    ' if negative input is detected, display a message to the user
                 ElseIf Cost < 0 Then
                     MsgBox("no negative values allowed!")
                     KiloCostTxtBox.Text = 0
@@ -207,6 +229,7 @@ Public Class Joseph_Freese_P5
                 Power = CDbl(KiloPowerTxtBox.Text)
                 If Power > 0 Then
 
+                    ' If the user selects the Laundry Washer, allow them to input Water and the cost per gallon
                     If Selected = "Laundry Washer" Then
                         multiply = (Val(HoursPerDayTxtBox.Text) * Val(KiloPowerTxtBox.Text) * Val(KiloCostTxtBox.Text)) + (Val(WaterPerHourTxt.Text) * Val(CostPerGallonTxt.Text))
                         multiplyMonthly = multiply * 30
@@ -216,6 +239,8 @@ Public Class Joseph_Freese_P5
                         Calc3Lbl.Text = multiplyYearly.ToString("C")
                         currentCost = multiply.ToString("C")
                         Exit Sub
+
+                        ' If the user selected a different appliance, just do the normal calculation
                     ElseIf Selected <> "Laundry Washer" Then
                         multiply = (Val(HoursPerDayTxtBox.Text) * Val(KiloPowerTxtBox.Text) * Val(KiloCostTxtBox.Text))
                         multiplyMonthly = multiply * 30
@@ -226,6 +251,8 @@ Public Class Joseph_Freese_P5
                         currentCost = multiply.ToString("C")
                         Exit Sub
                     End If
+
+                    ' if negative input is detected, display a message to the user
                 ElseIf Power < 0 Then
                     MsgBox("no negative values allowed!")
                     KiloPowerTxtBox.Text = 0
