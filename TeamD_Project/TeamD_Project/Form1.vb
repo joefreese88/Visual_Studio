@@ -1,4 +1,15 @@
-﻿Public Class Form1
+﻿
+''' <summary>
+'''  Author: Joseph Freese and my class team
+'''  Program: TeamD_Project
+'''  Description: 
+''' 
+''' </summary>
+
+
+
+Public Class Form1
+
     Dim First_Name_Pass As String = ""      'Used to send the first name to the second form
     Dim Last_Name_Pass As String = ""       'Used to send the last name to the second form
     Dim Phone_Number_Pass As String = ""       'Used to send the phone number to the second form
