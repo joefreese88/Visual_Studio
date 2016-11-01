@@ -569,8 +569,8 @@ Public Class Joseph_Freese_P5
 
     'View the currently set kWh for each appliance
     Private Sub ViewBtn_Click(sender As Object, e As EventArgs) Handles ViewBtn.Click
-        Dim myString As String = ""
-        Dim count As Integer = 0
+        Dim myString As String = ""     ' used to connect all the strings in the listbox together
+        Dim count As Integer = 0        ' keep track of the index for the for loop below
 
         For count = 0 To ApplianceListBox.Items.Count - 1
             myString = myString & ApplianceListBox.Items(count) & " = " & applianceKilos(count) & vbCrLf
